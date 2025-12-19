@@ -2,9 +2,10 @@ import { LightSensor } from "./sensors/Sensor.js";
 
 class SensorManager {
   //sensor manager contains a map of sensors
-  constructor(sendDataToWebSocket) {
+  constructor(sendData) {
     this.sensors = new Map();
-    this.sendDataToWebSocket = sendDataToWebSocket;
+    this.sendData = sendData;
+    //console.log("SensorManager", sendDataToWebSocket);
   }
 
   createSensor(config) {
@@ -18,7 +19,7 @@ class SensorManager {
     if (config.type === "Light") {
       sensor = new LightSensor({
         ...config,
-        sendDataToWebsocket: this.sendDataToWebsocket,
+        sendData: this.sendData,
       });
     }
 
@@ -27,21 +28,26 @@ class SensorManager {
 
     //store sensor in key value pair
     this.sensors.set(sensor.sensorId, sensor);
+
+    this.tickPrint();
   }
 
   deleteSensor(sensorId) {}
 
-  listSensors() { 
+  listSensors() {
     //get the maps values, store it in an array,
     //then loop over the array
-    [...this.sensors.values()].map(s => ({
+    return [...this.sensors.values()].map((s) => ({
       sensorId: s.sensorId,
-      type: 
-    }))
+      type: s.type,
+      interval: s.interval,
+    }));
   }
-  
-  tick() {
-    
+
+  tickPrint() {
+    setInterval(() => {
+      console.log(this.listSensors());
+    }, 2000);
   }
 }
 

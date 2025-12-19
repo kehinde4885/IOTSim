@@ -1,4 +1,1 @@
-To run
-node main.js
-
-This is the backend of the simulator UI
+Internet of Things Simulator for HMI Project

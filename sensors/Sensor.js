@@ -1,13 +1,15 @@
 class Sensor {
-  constructor({ sensorId, type, interval, sendDataToWS }) {
+  constructor({ sensorId, type, interval, sendData }) {
     //InConfig
-    this.sendDataToWS = sendDataToWS;
+    this.sendDataToWS = sendData;
     this.sensorId = sensorId;
     this.interval = interval;
-    this.type = type;
     //InConfig
+    this.type = type;
     this.timer = null;
     this.value = null;
+
+    console.log(sendData);
   }
 
   start() {
@@ -16,7 +18,7 @@ class Sensor {
     this.timer = setInterval(() => {
       const value = this.update();
 
-      this.sendData({
+      this.sendDataToWS({
         sensorId: this.sensorId,
         value,
         timestamp: Date.now(),
@@ -49,4 +51,4 @@ class LightSensor extends Sensor {
   }
 }
 
-export {LightSensor}
+export { LightSensor };

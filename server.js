@@ -3,6 +3,7 @@ import cors from "cors"
 import { SensorManager } from "./SensorManager.js";
 import { sendToWS } from "./wsclient.js";
 
+
 const app = express();
 const sensorManager = new SensorManager(sendToWS);
 
