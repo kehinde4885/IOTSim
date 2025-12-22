@@ -9,11 +9,8 @@ const sensorManager = new SensorManager(sendToWS);
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/sensors", (req, res) => {
-  //read list of sensors
-  res.json(sensorManager.listSensors());
-});
-
+//CRUD
+//CREATE SENSOR
 app.post("/api/sensors/create", (req, res) => {
   // {"sensorId":"345","type":"Light","interval":"20"}
   //create sensor
@@ -25,6 +22,16 @@ app.post("/api/sensors/create", (req, res) => {
   }
 });
 
+
+//READ ALL SENSORS-READ
+app.get("/api/sensors", (req, res) => {
+  //read list of sensors
+  res.json(sensorManager.listSensors());
+});
+
+
+
+//UPDATE SENSOR
 app.post("/api/sensors/update/:id", (req, res) => {
   const { id } = req.params;
 
@@ -41,6 +48,7 @@ app.post("/api/sensors/update/:id", (req, res) => {
 
 
 
+//DELETE SENSOR
 app.delete("/api/sensors/:id", (req, res) => {
   //delete sensors
   sensorManager.deleteSensor(req.params.id);

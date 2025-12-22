@@ -1,6 +1,8 @@
 import { LightSensor } from "./sensors/LightSensor.js";
 import TemperatureSensor from "./sensors/TemperatureSensor.js";
 
+//Look into singleton pattern for sensorManager
+
 class SensorManager {
   //sensor manager contains a map of sensors
   constructor(sendData) {
@@ -58,6 +60,8 @@ class SensorManager {
   }
 
   helpCreateSensor(config, type) {
+    //CLass Factory Pattern
+    //check notes below
     try {
       if (type === "Light") {
         return new LightSensor({
@@ -80,3 +84,22 @@ class SensorManager {
 }
 
 export { SensorManager };
+  
+  
+  
+//NOTES
+//Use Mapping instead of if/else
+// const sensorRegistry = {
+//   Light: LightSensor,
+//   Temperature: TemperatureSensor
+// };
+
+// helpCreateSensor(config, type) {
+//   const SensorClass = sensorRegistry[type];
+//   if (!SensorClass) throw new Error("Unknown sensor type");
+
+//   return new SensorClass({
+//     ...config,
+//     sendData: this.sendData,
+//   });
+// }
