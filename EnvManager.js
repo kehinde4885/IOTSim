@@ -1,3 +1,5 @@
+
+
 export class EnvManager {
   constructor() {
     this.ambientTemperature = 45;

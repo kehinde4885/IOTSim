@@ -3,8 +3,14 @@ import cors from "cors";
 import { EnvManager } from "./EnvManager.js";
 import { SensorManager } from "./SensorManager.js";
 import { sendToWS } from "./wsclient.js";
+import { createSensorRoutes } from "./routes/sensors.routes.js";
+import { createEnvRoutes } from "./routes/env.router.js";
+import { createDeviceRoutes } from "./routes/dev.router.js";
+import { DeviceManager } from "./devices/DevManager.js";
 
 const app = express();
+
+const devManager = new DeviceManager();
 
 const envManager = new EnvManager();
 
@@ -20,51 +26,13 @@ setInterval(() => {
 app.use(express.json());
 app.use(cors());
 
-//CRUD
-//CREATE SENSOR
-app.post("/api/sensors/create", (req, res) => {
-  // {"sensorId":"345","type":"Light","interval":"20"}
-  //create sensor
-  try {
-    sensorManager.createSensor(req.body);
-    res.status(201).send("Sensor Created");
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
+//at this path, mount this router(function returns a router)
+app.use("/api/sensors", createSensorRoutes(sensorManager));
 
-//READ ALL SENSORS-READ
-app.get("/api/sensors", (req, res) => {
-  //read list of sensors
-  res.json(sensorManager.listSensors());
-});
+app.use("api/env", createEnvRoutes(envManager))
 
-//UPDATE SENSOR
-app.post("/api/sensors/update/:id", (req, res) => {
-  const { id } = req.params;
+app.use("/api/devices", createDeviceRoutes(devManager))
 
-  const sensor = sensorManager.getSensor(id);
-
-  if (!sensor) {
-    return res.status(404).json({ error: "Sensor not found" });
-  }
-
-  sensor.update();
-
-  res.json({ success: true });
-});
-
-//DELETE SENSOR
-app.delete("/api/sensors/:id", (req, res) => {
-  //delete sensors
-  sensorManager.deleteSensor(req.params.id);
-  res.send("sensor deleted");
-});
-
-//
-app.post("/api/env/update", (req, res) => {
-  envManager.setAmbientTemperature(99);
-});
 
 app.listen(3000, () => {
   console.log("Simulator backend running on port 3000");

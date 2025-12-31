@@ -1,10 +1,12 @@
-import { HVAC_MODES } from "./hvacModes";
+import { HVAC_MODES } from "./hvacModes.js";
 
 class HVAC {
   constructor({ heatingRate = 0.05, coolingRate = 0.05 , tolerance = 0.5, targetTemp = 24}) {
     console.log("HVAC DEVICE CREATED");
     this.heatingRate = heatingRate;
     this.coolingRate = coolingRate;
+
+    //temp sensor
 
     this.tolerance = tolerance;
     this.targetTemp = 24;
