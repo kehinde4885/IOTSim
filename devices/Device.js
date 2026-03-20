@@ -9,6 +9,16 @@ export default class Device {
 
   startTransmission() {
     //
+    if (this.timer) return;
+
+    this.timer = setInterval(() => {
+      this.sendDatatoWS({
+        category: "device",
+        deviceId: this.id,
+        value: this.isOn,
+        timestamp: Date.now(),
+      });
+    }, this.interval);
   }
 
   stop() {
@@ -17,6 +27,15 @@ export default class Device {
       clearInterval(this.timer);
       this.timer = null;
     }
+  }
+
+  itemize() {
+    return {
+      id: this.id,
+      isOn: this.isOn,
+      type: this.type,
+      interval: this.interval,
+    };
   }
 
   togglePower() {

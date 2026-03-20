@@ -1,3 +1,6 @@
+////DEPRECATED///////
+////////////////////
+
 import Sensor from "./Sensor.js";
 
 class DoorSensor extends Sensor {

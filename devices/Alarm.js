@@ -10,7 +10,7 @@ class ALARM extends Device {
 
     this.id = config.deviceId;
     this.linkedSmokedSensorId = config.smokeSensorId;
-    this.active = false;
+    this.isOn = false;
 
     this.smokeEventHandler = this.handleSmokeEvent.bind(this);
 
@@ -44,37 +44,19 @@ class ALARM extends Device {
   }
 
   triggerAlarm(sensorId) {
-    if (this.active) return;
+    if (this.isOn) return;
 
-    this.active = true;
+    this.isOn = true;
     console.log(`🚨 ALARM ${this.id} TRIGGERED by Smoke Sensor ${sensorId}`);
   }
 
   resetAlarm(sensorId) {
     // Optional logic — real alarms usually require manual reset
-    this.active = false;
+    this.isOn = false;
     console.log(`✅ ALARM ${this.id} reset from Smoke Sensor ${sensorId}`);
   }
 
-  startTransmission() {
-    this.timer = setInterval(() => {
-      this.sendDatatoWS({
-        category: "device",
-        deviceId: this.id,
-        value: this.active,
-        timestamp: Date.now(),
-      });
-    }, this.interval);
-  }
 
-  itemize() {
-    return {
-      id: this.id,
-      isActive: this.active,
-      type: this.type,
-      interval: this.interval,
-    };
-  }
 
   simulate() {
     //Alam sensor does not

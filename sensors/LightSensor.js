@@ -14,17 +14,7 @@ class LightSensor extends Sensor {
 
   startTransmission() {
     //override start to send immediate data on start
-    //super.start();
-
-    if (this.timer) return;
-
-    this.timer = setInterval(() => {
-      this.sendDataToWS({
-        sensorId: this.sensorId,
-        value: this.value,
-        timestamp: Date.now(),
-      });
-    }, this.interval);
+    super.startTransmission();
   }
 
   itemize() {

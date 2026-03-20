@@ -18,6 +18,18 @@ export default class Sensor {
   startTransmission() {
     //used to send updates to the websocket server
     //override in child subclass
+
+    if (this.timer) return;
+
+    this.timer = setInterval(() => {
+      this.sendDataToWS({
+        category: "sensor",
+        deviceId: this.sensorId,
+        value: this.value,
+        timestamp: Date.now(),
+        type: this.type,
+      });
+    }, this.interval);
   }
 
   stop() {
