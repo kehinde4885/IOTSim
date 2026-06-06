@@ -23,6 +23,11 @@ startSensorSimulation(sensorManager);
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) =>{
+    res.send("ok")
+
+})
+
 //at this path, mount this router(function returns a router)
 app.use("/api/sensors", createSensorRoutes(sensorManager));
 
