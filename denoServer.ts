@@ -1,4 +1,10 @@
-﻿//Express HTTP Server
+﻿//SideEffects Imports- Clean Later
+import  "./Simulator/EntityCreator.ts";
+
+
+
+
+//Express HTTP Server
 import express from "express";
 import cors from "cors";
 
@@ -25,7 +31,7 @@ Deno.serve({port:80}, wssHandler)
 
 const clients = new Set<WebSocket>()
 
-function wssHandler(request){
+function wssHandler(request: Request){
     //Rejects Incoming HTTP requests
     if(request.headers.get("upgrade") !== "websocket"){
         return new Response(null, {status: 426})
@@ -52,7 +58,7 @@ function wssHandler(request){
     return response
 }
 
-function broadcastAll(message){
+function broadcastAll(message: string){
     clients.forEach((client)=>{
         if(client.readyState === WebSocket.OPEN){
             client.send(message)
