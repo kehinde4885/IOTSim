@@ -1,6 +1,12 @@
 ﻿
+// Entity is the base object within the simulator
+// the subtype of entity is used to narrow down the 
+// specific child of entity.
 
-export interface entityData {
+import {AEntity} from "./Objects";
+
+
+export interface entityConfig {
     id: number,
     type: EntityType,
     subtype: subEntityTypes,
@@ -24,6 +30,7 @@ export enum SpaceType {
 }
 
 export enum AssetType {
+    Chair = "CHAIR",
 
 }
 
@@ -32,3 +39,6 @@ export enum CapabilityType {
     Temperature ="Temperature",
     Motion = "MOTION"
 }
+
+
+export type entityObject = AEntity;

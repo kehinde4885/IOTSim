@@ -1,17 +1,13 @@
 ﻿
+import {entityConfig} from "../types.ts";
 
-export interface Config{
+
+export class AEntity {
     name: string;
     type: string;
-    id: string;
-}
+    id: number;
 
-export default class AObject {
-    name: string;
-    type: string;
-    id: string;
-
-    constructor(config: Config) {
+    constructor(config: entityConfig) {
         this.name = config.name || "Device";
         this.type = config.type || "base";
         this.id = config.id;

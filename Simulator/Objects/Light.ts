@@ -1,5 +1,5 @@
-﻿import AObject from "./Object.js"
-import {Config} from "./Object.js";
+﻿import {AEntity} from "./Base.ts"
+import {entityConfig} from "../types.ts";
 
 //
 
@@ -8,13 +8,13 @@ enum PowerState {
     Off="OFF",
 }
 
-class Light extends AObject{
+export class Light extends AEntity{
     //STATE
-    private powerState: PowerState = PowerState.Off ;
+    private powerState: PowerState ;
     // private brightness: number = 1
     // private colorTemp: number = 2700; // warm household bulb 
 
-    constructor(config: Config){
+    constructor(config: entityConfig){
         super(config);
         this.type = "Light"
         this.powerState = PowerState.On;
