@@ -3,17 +3,20 @@
 // the subtype of entity is used to narrow down the 
 // specific child of entity.
 
-import {AEntity} from "./Objects";
+import {AEntity} from "./Objects/index.ts";
 
 
 export interface entityConfig {
-    id: number,
+    id: string,
     type: EntityType,
     subtype: subEntityTypes,
     name: string,
-    parent: number,
+    relationships?: entityConfigRelation[],
 }
 
+type entityConfigRelation = {
+    [key: string]: string[];
+}
 
 export enum EntityType {
     Space = "SPACE",
@@ -27,10 +30,11 @@ type subEntityTypes = SpaceType | AssetType | CapabilityType ;
 export enum SpaceType {
     Room = "ROOM",
     Building ="BUILDING",
+    Level = "LEVEL",
 }
 
 export enum AssetType {
-    Chair = "CHAIR",
+    VAV = "VAV",
 
 }
 

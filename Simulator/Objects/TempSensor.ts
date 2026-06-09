@@ -3,6 +3,8 @@ import {entityConfig} from "../types.ts";
 
 export class TempSensor extends AEntity{
     temperature: number;
+  
+  
     
     constructor(entity:entityConfig) {
         super(entity);
@@ -10,7 +12,5 @@ export class TempSensor extends AEntity{
     }
     
     
-    //relationships
-    relationships: []= [];
     
 }

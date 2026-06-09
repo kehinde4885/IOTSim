@@ -1,7 +1,10 @@
 ﻿import {AssetType, CapabilityType, entityConfig, entityObject, EntityType, SpaceType} from "./types.ts";
 
 
-import {Light, MotionSensor, TempSensor} from "./Objects";
+import {Light, MotionSensor, TempSensor, VAV} from "./Objects/index.ts";
+
+import {data2} from "./EntitydataSet.ts";
+
 
 
 //Example of logical device
@@ -10,26 +13,20 @@ import {Light, MotionSensor, TempSensor} from "./Objects";
 // then the bulb turns on when motion is detected.
 
 
-// //raw data
-// console.log(data)
-//
-// //live entity map
-// const entityMap = new Map();
-//
-//
-// data.forEach(entity=>{
-//
-//     const existEntry = entityMap.get(entity.id)
-//
-//     if(existEntry){
-//
-//     }
-
-
-
 //Global Entity Map
 console.log("creating global entity map")
 const entityMap = new Map();
+
+
+data2.forEach((item:entityConfig) => {
+    
+    const  returned = entityCreator(item);
+   // console.log(returned)
+    entityMap.set(item.id, returned);
+})
+
+console.log(entityMap)
+
 
 
 function entityCreator(data:entityConfig): entityObject{
@@ -52,7 +49,8 @@ function entityCreator(data:entityConfig): entityObject{
                 
             default:
                 console.log(`${data.type} is not configured`)
-                throw new Error(`${data.type} is not configured`)
+                //must implement a catch block
+               throw new Error(`${data.type} is not configured`)
                              
                 
         }
@@ -66,43 +64,46 @@ function capabilityCreator(entity: entityConfig):entityObject{
             return new Light(entity)
         case CapabilityType.Motion:
             return new MotionSensor(entity)
+        case CapabilityType.Temperature:
+            return new TempSensor(entity)
         
         default:
-            console.log(`Unknown subtype "${entity.subtype}"`)
-            return
+            //must implement a catch block
+            throw new Error(`${entity.subtype} is not configured`)
     }
     
 }
 
 
-function spaceCreator(entity: entityConfig){
+function spaceCreator(entity: entityConfig):entityObject{
     switch(entity.subtype){
         case SpaceType.Room:
             return new TempSensor(entity)
         case SpaceType.Building:
             return new MotionSensor(entity)
+        case SpaceType.Level:
+            return new MotionSensor(entity)
 
         default:
-            console.log(`Unknown subtype "${entity.subtype}"`)
+            //must implement a catch block
+            throw new Error(`${entity.subtype} is not configured`)
     }
 
 }
 
 
-function assetCreator(entity: entityConfig){
+function assetCreator(entity: entityConfig):entityObject{
     switch(entity.subtype){
-        case AssetType.Chair:
-            return new Chair(entity)
+        case AssetType.VAV:
+            return new VAV(entity)
 
         default:
-            console.log(`Unknown subtype "${entity.subtype}"`)
+            //must implement a catch block
+            throw new Error(`${entity.subtype} is not configured`)
     }
 
 }
 
-
-
-//entityCreator(data);
 
 
 export {entityCreator}
