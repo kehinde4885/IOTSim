@@ -1,10 +1,10 @@
-﻿//SideEffects Imports- Clean Later
-import  "./Simulator/EntityCreator.ts";
+﻿//SideEffects Imports-Clean Later
+import  "./Simulator/simulator.ts";
 
 
 
 
-//Express HTTP Server
+//Express HTTP SERVER
 import express from "express";
 import cors from "cors";
 
@@ -26,7 +26,7 @@ app.listen(3000, ()=>{
 
 
 
-//Deno Websocket Server
+//DENO WEBSOCKET SERVER
 Deno.serve({port:80}, wssHandler)
 
 const clients = new Set<WebSocket>()

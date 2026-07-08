@@ -6,13 +6,12 @@ export class AEntity {
     name: string;
     type: string;
     id: string;
-    relationships?: Map<K,V>;
+    relationships: Map<any,any>;
 
     constructor(config: entityConfig) {
         this.name = config.name || "Device";
         this.type = config.type || "base";
         this.id = config.id;
-        
         this.relationships = new Map();
         
        

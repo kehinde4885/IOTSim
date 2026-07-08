@@ -19,6 +19,7 @@ type entityConfigRelation = {
 }
 
 export enum EntityType {
+    //here would be sensor actuator
     Space = "SPACE",
     Asset = "ASSET",
     Capability = "CAPABLE",
@@ -38,6 +39,10 @@ export enum AssetType {
 
 }
 
+
+
+//this would change to SensorType
+//this would change to tempsensor, firesensor
 export enum CapabilityType {
     Light= "LIGHT",
     Temperature ="Temperature",

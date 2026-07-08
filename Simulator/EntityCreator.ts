@@ -3,7 +3,7 @@
 
 import {Light, MotionSensor, TempSensor, VAV} from "./Objects/index.ts";
 
-import {data2} from "./EntitydataSet.ts";
+
 
 
 
@@ -13,29 +13,10 @@ import {data2} from "./EntitydataSet.ts";
 // then the bulb turns on when motion is detected.
 
 
-//Global Entity Map
-console.log("creating global entity map")
-const entityMap = new Map();
-
-
-data2.forEach((item:entityConfig) => {
-    
-    const  returned = entityCreator(item);
-   // console.log(returned)
-    entityMap.set(item.id, returned);
-})
-
-console.log(entityMap)
-
-
 
 function entityCreator(data:entityConfig): entityObject{
     
-    //returns existing entity
-    if(entityMap.has(data.id)){
-        return entityMap.get(data.id);
-    }
-  
+
     //else creates one
     switch(data.type) {
             case EntityType.Capability:

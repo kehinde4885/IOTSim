@@ -4,7 +4,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "",
     "start": "deno run --allow-net --allow-sys --allow-env denoServer.ts",
     "watch": "deno run --watch --allow-net --allow-sys --allow-env denoServer.ts"
   },
