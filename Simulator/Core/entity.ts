@@ -1,4 +1,4 @@
-﻿
+﻿import {EntitiesStrings, entityConfig} from "../types.ts";
 
 /**
  * abstract classes are meant to serve as a blueprint
@@ -8,7 +8,24 @@
  */
 
 export abstract class Entity{
-    abstract describe(): string;
+    abstract name: string;
+    Relationships: Map<any,any> = new Map
+    
+    constructor(config: entityConfig) {
+        
+        config.relationships?.forEach((relationship) => {
+            const relSet = new Set()
+            //console.log(`base `,Object.keys(relationship)[0])
+
+            //loop here
+            Object.values(relationship)[0].forEach((item) => {
+                relSet.add(item)
+            })
+
+            this.Relationships.set(Object.keys(relationship)[0], relSet)
+
+        })
+    }
 }
 
 /**
@@ -19,6 +36,8 @@ export abstract class Entity{
  * 
  */
 export type Constructor<T> = new(...args: any[])=> T;
+
+
 
 
 /**
@@ -35,7 +54,8 @@ export class EntityFactory<T extends Entity>{
     private registry = new Map<string,Constructor<T>>()
     
     //register the entity
-    register(key:string, ctor:Constructor<T>): void{
+    //its key is the string name for the leaf type
+    register(key:EntitiesStrings, ctor:Constructor<T>): void{
         if(this.registry.has(key)){
             throw new Error(`Duplicate registration for key: "${key}"`)
         }

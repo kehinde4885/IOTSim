@@ -4,5 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
     "strict": true,
+    "target": "ES5",
+    "downlevelIteration": true
   }
 }

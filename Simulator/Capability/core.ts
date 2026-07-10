@@ -6,11 +6,18 @@
  * for the first non abstract(concrete) class
  * in the inheritance chain
  */
-export abstract class Capability extends Entity{}
+export abstract class Capability extends Entity{
+    abstract LastValueTime: Date
+    
+}
+
 
 export abstract class Sensor extends Capability {
-    abstract read(): {type:string, value: number}
-    describe(){ return "sensor capability"}
+   
+}
+
+export abstract class State extends Capability{
+    
 }
 
 export abstract class Actuator extends Capability{
@@ -33,5 +40,6 @@ export abstract class Parameter extends Capability {
  * the ActuatorFactory only actuators and so on
  */
 export const SensorFactory = new EntityFactory<Sensor>()
+export const StateFactory = new EntityFactory<State>()
 export const ActuatorFactory = new EntityFactory<Actuator>();
 export const ParameterFactory = new EntityFactory<Parameter>();

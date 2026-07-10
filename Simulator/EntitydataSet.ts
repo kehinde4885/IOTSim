@@ -1,68 +1,36 @@
-﻿import {AssetType, CapabilityType, entityConfig, EntityType, SpaceType} from "./types.ts";
-
-const data: entityConfig[] = [
-    {
-        id: "101",
-        type: EntityType.Capability,
-        subtype: CapabilityType.Light,
-        name: "bedroom light",
-        relationships: [{}],
-    },
-    {
-        id: "102",
-        type: EntityType.Capability,
-        subtype: CapabilityType.Temperature,
-        name: "tempSensor",
-     
-    },
-    {
-        id: "103",
-        type: EntityType.Capability,
-        subtype: CapabilityType.Motion,
-        name: "motionSensor",
-       
-    },
-    {
-        id: "504",
-        type: EntityType.Space,
-        subtype: SpaceType.Room,
-        name: "bedroom",
-    
-    }
-]
-
+﻿import {EntityCategory, entityConfig, EquipmentTypes, SensorTypes, SpaceTypes, StateTypes} from "./types.ts";
 
 const data2: entityConfig[] = [
     {
         id: "121",
-        type: EntityType.Space,
-        subtype: SpaceType.Building,
+        type: EntityCategory.space,
+        subtype: SpaceTypes.building,
         name: "building121"
     },
     {
         id: "1",
-        type: EntityType.Space,
-        subtype: SpaceType.Level,
+        type: EntityCategory.space,
+        subtype: SpaceTypes.level,
         name: "level1",
         relationships: [{"isPartOf": ["121"]}]
     },
     {
         id: "101",
-        type: EntityType.Space,
-        subtype: SpaceType.Room,
+        type: EntityCategory.space,
+        subtype: SpaceTypes.room,
         name: "room1",
         relationships: [{"hasCapability": ["5"]}]
     },
     {
         id:"5",
-        type:EntityType.Capability,
-        subtype: CapabilityType.Temperature,
+        type:EntityCategory.capability,
+        subtype: SensorTypes.tempsensor,
         name: "tempSensorR",
     },
     {
         id:"L1.01",
-        type: EntityType.Asset,
-        subtype:AssetType.VAV,
+        type: EntityCategory.asset,
+        subtype: EquipmentTypes.hvac,
         name:"VAV L1.01",
         relationships: [
             {"hasCapability": ["8"]},
@@ -71,9 +39,30 @@ const data2: entityConfig[] = [
     },
     {
         id:"8",
-        type: EntityType.Capability,
-        subtype: CapabilityType.Temperature,
+        type: EntityCategory.capability,
+        subtype: SensorTypes.tempsensor,
         name:"tempSensor8",
     }
 ]
-export {data2}
+
+const data3: entityConfig[] = [
+    {
+        id: "9503",
+        subtype: EquipmentTypes.lightbulb,
+        type: EntityCategory.asset,
+        name: "LightBulb",
+        relationships:[
+            {"hasCapability": ["7890"]}
+        ]
+    },
+    {
+        id: "7890",
+        subtype: StateTypes.binaryState,
+        type: EntityCategory.capability,
+        name: "onOffState",
+        relationships:[
+            {"isCapabilityOf": ["7890"]}
+        ]
+    }
+]
+export {data3}

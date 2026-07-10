@@ -1,20 +1,23 @@
-﻿import {Sensor} from "../core.ts";
+﻿
+import {Sensor} from "../core.ts";
 import {entityConfig} from "../../types.ts";
 
-export class TempSensor extends Sensor{
+export class BinarySensor extends Sensor{
     name: string;
-    lastValue: number;
+    lastValue: boolean;
     LastValueTime: Date;
     id: string;
-    
+   
 
     constructor(config: entityConfig) {
         super(config)
         this.LastValueTime = new Date()
-        this.lastValue = 28;
-        this.name = config.name || "Temperature Sensor";
+        this.lastValue = false;
+        this.name = config.name || "Binary Sensor";
         this.id = config.id;
-        
+       
+
 
     }
+    
 }
