@@ -11,22 +11,31 @@ import {EquipmentFactory} from "./Assets/core.ts";
 
 
 
+
 //Example of logical device
 // would be a smart bulb
 // the smart bulb contains a motion sensor
 // then the bulb turns on when motion is detected.
 
 
-
-function entityCreatorHelper(data:entityConfig): Entity{
+/**
+ * 
+ * for function declaration ...args is rest operator
+ * for function calling ...args is spread operator
+ */
+function entityCreatorHelper(data:entityConfig, ...args: any[]): Entity{
+  
+    
+    const newData = [data,...args]
+        
     if(isSensorType(data.subtype)){
-        return SensorFactory.create(data.subtype, data)
+        return SensorFactory.create(data.subtype, ...newData)
     }
     if(isEquipmentType(data.subtype)){
-        return EquipmentFactory.create(data.subtype, data)
+        return EquipmentFactory.create(data.subtype, ...newData)
     }
     if(isStateType(data.subtype)){
-        return StateFactory.create(data.subtype, data)
+        return StateFactory.create(data.subtype, ...newData)
     }
     
     

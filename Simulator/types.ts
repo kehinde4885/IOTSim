@@ -4,6 +4,8 @@
 // specific child of entity.
 
 
+import {MyEmitter} from "./EventBus.ts";
+
 /**
  * 
  */
@@ -72,6 +74,13 @@ export interface entityConfig {
     relationships?: entityConfigRelation[],
 }
 
-type entityConfigRelation = {
+// export interface entityConfig {
+//     eventBus: MyEmitter
+// }
+// export interface entityConfigUpdate extends  entityConfig {
+//     eventBus: MyEmitter
+// }
+
+export type entityConfigRelation = {
     [key: string]: string[];
 }

@@ -9,10 +9,13 @@ import {data3} from "./EntitydataSet.ts";
 import {entityConfig} from "./types.ts";
 import {Entity} from "./Core/entity.ts";
 import {entityCreatorHelper} from "./EntityCreatorHelper.ts";
+import {EventBus} from "./EventBus.ts";
+
 
 //create devices
 
-class simEngine {
+export class simEngine {
+    // @ts-ignore
     private entityMap: Map<string,Entity> = new Map();
     
     constructor(){
@@ -28,7 +31,7 @@ class simEngine {
                 return this.entityMap.get(item.id);
             }
         
-            const  returned = entityCreatorHelper(item);
+            const  returned = entityCreatorHelper(item,EventBus);
             // console.log(returned)
             this.entityMap.set(item.id, returned);
             })

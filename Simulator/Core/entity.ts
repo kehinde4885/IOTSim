@@ -1,4 +1,5 @@
-﻿import {EntitiesStrings, entityConfig} from "../types.ts";
+﻿import {EntitiesStrings, entityConfig, entityConfigRelation} from "../types.ts";
+import {MyEmitter} from "../EventBus.ts";
 
 /**
  * abstract classes are meant to serve as a blueprint
@@ -9,11 +10,14 @@
 
 export abstract class Entity{
     abstract name: string;
+    EventBus: MyEmitter
     Relationships: Map<any,any> = new Map
-    
-    constructor(config: entityConfig) {
+
+    constructor(relationships: entityConfigRelation[], eventBus: MyEmitter) {
         
-        config.relationships?.forEach((relationship) => {
+        this.EventBus = eventBus
+        
+        relationships?.forEach((relationship) => {
             const relSet = new Set()
             //console.log(`base `,Object.keys(relationship)[0])
 
@@ -65,6 +69,7 @@ export class EntityFactory<T extends Entity>{
     //create instance of entity
     //returns a type any(T)
     create(key:string, ...args:any[]):T{
+        //console.log(args)
         //fetch constructor
         const ctor = this.registry.get(key);
         
@@ -74,7 +79,7 @@ export class EntityFactory<T extends Entity>{
                 `Unknown type "${key}". Known types are: ${[...this.registry.keys()].join(",")}`
             );
         }
-        //args is spread here
+        //args Array is spread here
         //before passing as parameter.
         return new ctor(...args)
         
