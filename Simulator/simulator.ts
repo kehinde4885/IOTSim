@@ -15,7 +15,6 @@ import {EventBus} from "./EventBus.ts";
 //create devices
 
 export class simEngine {
-    // @ts-ignore
     private entityMap: Map<string,Entity> = new Map();
     
     constructor(){
