@@ -1,13 +1,11 @@
 ﻿//SideEffects Imports-Clean Later
 //import  "./Simulator/simulator.ts";
 
-import "./gameLoop.tsx"
+//import "./gameLoop.tsx"
 
 import {simEngine} from "./Simulator/simulator.ts";
 
 const engine = simEngine.getInstance()
-
-engine.printEntities()
 
 
 //Express HTTP SERVER
@@ -27,6 +25,11 @@ app.get("/" , (req, res)=>{
 
 app.get("/getEntities", (req,res)=>{
     
+  const entityInfoArray = engine.printEntities()
+    
+    console.log(typeof entityInfoArray)
+       
+    res.json(JSON.stringify(entityInfoArray))
 })
 
 const port = 3001

@@ -47,23 +47,24 @@ export class simEngine {
     }
     
     printEntities(){
-       const array: {}[] = []
-        
+       const entityInfoArray: {}[] = []
+
+        /**
+         *Tell each entity to return its information
+         * and then input each returned value into the array
+         * FYI it is an object
+         */
         for(const [key,entity] of this.entityMap){
            // console.log(entity)
-            array.push(entity.getInfo())
+            entityInfoArray.push(entity.getInfo())
         }
+
+        /**
+         * 
+         */
+        return entityInfoArray
         
-        
-        console.log(JSON.stringify(array))
-        
-        //return array
-        //
-        // const obj = Object.fromEntries(this.entityMap)
-        //
-        // const json = JSON.stringify(obj)
-        //
-        // console.log(json)
+    
     }
     
 }
