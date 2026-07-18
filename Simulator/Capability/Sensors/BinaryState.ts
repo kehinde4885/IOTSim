@@ -16,8 +16,7 @@ export class BinaryState extends State{
         this.lastValue = false;
         this.name = config.name || "Binary Sensor";
         this.id = config.id;
-     
+   }
 
-    }
 
 }

@@ -1,7 +1,13 @@
 ﻿//SideEffects Imports-Clean Later
-import  "./Simulator/simulator.ts";
+//import  "./Simulator/simulator.ts";
 
+import "./gameLoop.tsx"
 
+import {simEngine} from "./Simulator/simulator.ts";
+
+const engine = simEngine.getInstance()
+
+engine.printEntities()
 
 
 //Express HTTP SERVER
@@ -19,8 +25,13 @@ app.get("/" , (req, res)=>{
     res.send("HTTP Server working OK")
 })
 
-app.listen(3000, ()=>{
-    console.log("Simulator http server running on port 3000")
+app.get("/getEntities", (req,res)=>{
+    
+})
+
+const port = 3001
+app.listen(port, ()=>{
+    console.log(`"Simulator http server running on port ${port}`)
     
 })
 

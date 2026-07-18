@@ -8,7 +8,8 @@ const data3: entityConfig[] = [
         type: EntityCategory.asset,
         name: "LightBulb",
         relationships:[
-            {"hasCapability": ["7890"]}
+            {"hasCapability": ["7890","800"]},
+            {"hasEquipment": ["78","42"]}
         ]
     },
     {

@@ -17,5 +17,4 @@ export class LightBulb extends Equipment{
         this.id = config.id
     }
     
-    
 }

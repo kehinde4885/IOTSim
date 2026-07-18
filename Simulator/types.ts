@@ -71,7 +71,7 @@ export interface entityConfig {
     type: EntityCategory,
     subtype: EntitiesStrings,
     name: string,
-    relationships?: entityConfigRelation[],
+    relationships: entityConfigRelation[],
 }
 
 // export interface entityConfig {

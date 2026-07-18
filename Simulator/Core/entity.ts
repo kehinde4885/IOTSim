@@ -1,4 +1,4 @@
-﻿import {EntitiesStrings, entityConfig, entityConfigRelation} from "../types.ts";
+﻿import {EntitiesStrings, entityConfigRelation} from "../types.ts";
 import {MyEmitter} from "../EventBus.ts";
 
 /**
@@ -10,6 +10,7 @@ import {MyEmitter} from "../EventBus.ts";
 
 export abstract class Entity{
     abstract name: string;
+    abstract id:string;
     EventBus: MyEmitter
     Relationships: Map<any,any> = new Map
 
@@ -19,9 +20,8 @@ export abstract class Entity{
         
         relationships?.forEach((relationship) => {
             const relSet = new Set()
-            //console.log(`base `,Object.keys(relationship)[0])
-
-            //loop here
+           
+            //returns the value of an object
             Object.values(relationship)[0].forEach((item) => {
                 relSet.add(item)
             })
@@ -30,6 +30,30 @@ export abstract class Entity{
 
         })
     }
+    
+    getInfo():{}{
+       
+        const objectInfo = {
+            id: this.id,
+            name: this.name,
+            rel: [] as {}[]
+        }
+        
+        
+        //loop through relationship map
+        for( const [key,value] of this.Relationships){
+           // console.log(key)
+
+            const rel = { [key]:  Array.from(value)}
+            
+           objectInfo.rel.push(rel)
+        }
+
+        return objectInfo
+        
+    }
+        
+      
 }
 
 /**

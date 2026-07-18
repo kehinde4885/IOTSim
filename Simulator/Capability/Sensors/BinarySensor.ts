@@ -16,9 +16,9 @@ export class BinarySensor extends Sensor{
         this.lastValue = false;
         this.name = config.name || "Binary Sensor";
         this.id = config.id;
-       
-
-
+        
     }
-    
+
+
+
 }
