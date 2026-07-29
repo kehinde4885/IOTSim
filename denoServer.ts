@@ -1,47 +1,4 @@
-﻿//SideEffects Imports-Clean Later
-//import  "./Simulator/simulator.ts";
-
-//import "./gameLoop.tsx"
-
-import {simEngine} from "./Simulator/simulator.ts";
-
-const engine = simEngine.getInstance()
-
-
-//Express HTTP SERVER
-import express from "express";
-import cors from "cors";
-
-const app = express();
-
-//Express middleware
-app.use(express.json());
-app.use(cors());
-
-app.get("/" , (req, res)=>{
-   console.log(req.body)
-    res.send("HTTP Server working OK")
-})
-
-app.get("/getEntities", (req,res)=>{
-    
-  const entityInfoArray = engine.printEntities()
-    
-    console.log(typeof entityInfoArray)
-       
-    res.json(JSON.stringify(entityInfoArray))
-})
-
-const port = 3001
-app.listen(port, ()=>{
-    console.log(`"Simulator http server running on port ${port}`)
-    
-})
-
-
-
-//DENO WEBSOCKET SERVER
-Deno.serve({port:80}, wssHandler)
+﻿Deno.serve({port:80}, wssHandler)
 
 const clients = new Set<WebSocket>()
 
@@ -53,6 +10,8 @@ function wssHandler(request: Request){
 
     const {socket, response}:{socket: WebSocket ; response: Response} = Deno.upgradeWebSocket(request);
 
+    console.log("simulator Websocket server running on port 80")
+    
     socket.addEventListener("open", ()=>{
         clients.add(socket)
         console.log(`a client connected (total: ${clients.size})`)
@@ -79,3 +38,5 @@ function broadcastAll(message: string){
         }
     })
 }
+
+

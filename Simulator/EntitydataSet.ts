@@ -1,11 +1,11 @@
-﻿import {EntityCategory, entityConfig, EquipmentTypes, SensorTypes, SpaceTypes, StateTypes} from "./types.ts";
+﻿import {EntityTypes, entityConfig, EquipmentTypes, StateTypes} from "./types.ts";
 
 
 const data3: entityConfig[] = [
     {
         id: "9503",
         subtype: EquipmentTypes.lightbulb,
-        type: EntityCategory.asset,
+        type: EntityTypes.asset,
         name: "LightBulb",
         relationships:[
             {"hasCapability": ["7890","800"]},
@@ -15,7 +15,7 @@ const data3: entityConfig[] = [
     {
         id: "7890",
         subtype: StateTypes.binaryState,
-        type: EntityCategory.capability,
+        type: EntityTypes.capability,
         name: "onOffState",
         relationships:[
             {"isCapabilityOf": ["7890"]}

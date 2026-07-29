@@ -4,11 +4,12 @@
 // specific child of entity.
 
 
-import {MyEmitter} from "./EventBus.ts";
+
 
 /**
  * 
  */
+// ------CAPABILITY TYPES -----
 export enum SensorTypes {
     tempsensor = "TemperatureSensor",
     fireSensor = "FireSensor"
@@ -22,12 +23,10 @@ export enum ActuatorTypes {
 export enum StateTypes {
     binaryState = "BinaryState"
 }
-export type Capability = SensorTypes | ActuatorTypes | StateTypes
+export type CapabilityTypes = SensorTypes | ActuatorTypes | StateTypes
 
 
-/**
- * 
- */
+// ----ASSET TYPES----
 export enum FurnitureTypes {
     bed = "Bed",
     chair = "Chair"
@@ -39,12 +38,10 @@ export enum EquipmentTypes {
 }
 
 
-export type Assets = FurnitureTypes | EquipmentTypes
+export type AssetTypes = FurnitureTypes | EquipmentTypes
 
 
-/**
- * 
- */
+// ----SPACE TYPES------
 export enum SpaceTypes {
     building ="Building",
     level = "Level",
@@ -55,20 +52,20 @@ export enum SpaceTypes {
 /**
  * 
  */
-export enum EntityCategory {
+export enum EntityTypes {
     capability ="Capability",
     space = "Space", 
     asset = "Asset"
 
 }
-export type EntitiesStrings = Capability | Assets | SpaceTypes
+export type EntitiesStrings = CapabilityTypes | AssetTypes | SpaceTypes
 
 /**
  * 
  */
 export interface entityConfig {
     id: string,
-    type: EntityCategory,
+    type: EntityTypes,
     subtype: EntitiesStrings,
     name: string,
     relationships: entityConfigRelation[],
