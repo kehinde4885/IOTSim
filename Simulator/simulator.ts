@@ -1,5 +1,4 @@
-﻿import {data3} from "./EntitydataSet.ts";
-
+﻿
 console.log("Simulator Engine  Created")
 import "./register-all.ts"
 
@@ -32,18 +31,38 @@ export class simEngine {
     
     createEntities(data: entityConfig[]){
         
-        data.forEach((item:entityConfig) => {
+        data.forEach((config:entityConfig) => {
         
             //returns existing entity
-            if(this.entityMap.has(item.id)){
-                return this.entityMap.get(item.id);
+            if(this.entityMap.has(config.id)){
+                return this.entityMap.get(config.id);
             }
         
-            const  returned = entityCreatorHelper(item,EventBus);
+            const  returned = entityCreatorHelper(config,EventBus);
             // console.log(returned)
-            this.entityMap.set(item.id, returned);
+            this.entityMap.set(config.id, returned);
             })
 
+    }
+    
+    createEntity(config:entityConfig){
+        //returns existing entity
+        if(this.entityMap.has(config.id)){
+            return this.entityMap.get(config.id);
+        }
+
+        const  returned = entityCreatorHelper(config,EventBus);
+        // console.log(returned)
+        this.entityMap.set(config.id, returned);
+       
+        this.printEntities()
+        
+        return returned
+        
+    }
+    
+    deleteEntity(id:string){
+        this.entityMap.delete(id)
     }
     
     printEntities(){
@@ -58,6 +77,8 @@ export class simEngine {
            // console.log(entity)
             entityInfoArray.push(entity.getInfo())
         }
+        
+        console.log("EIA",entityInfoArray)
 
         /**
          * 

@@ -34,9 +34,38 @@ app.get("/getEntities", (req,res)=>{
 
 app.post("/createEntity", (req,res)=>{
     
-    console.log(req)
+    try{
+        const data = req.body
+        
+        if(!data || typeof data !== 'object'){
+            return res.status(400).json({error: "Invalid request body"})
+        }
+        
+        const engine = simEngine.getInstance()
+        
+        const entity = engine.createEntity(data)
+        
+        console.log("json to send back", entity)
+        
+        res.status(201).json(entity)
+        
+        
+    }catch (error){
+        console.error('Failed to create Entity',error)
+        res.status(500).json({error: 'Failed to create entity'})
+    }
 })
 
+
+app.delete("/delete/:id", (req,res)=>{
+    
+    const {id} = req.params
+    const engine = simEngine.getInstance()
+    
+    engine.deleteEntity(id)
+    console.log(id)
+    res.send("entity Deleted")
+})
 
 const port = 3001
 app.listen(port, ()=>{

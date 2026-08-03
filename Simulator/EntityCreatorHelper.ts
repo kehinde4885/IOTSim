@@ -23,24 +23,26 @@ import {EquipmentFactory} from "./Assets/core.ts";
  * for function declaration ...args is rest operator
  * for function calling ...args is spread operator
  */
-function entityCreatorHelper(data:entityConfig, ...args: any[]): Entity{
+function entityCreatorHelper(config:entityConfig, ...args: any[]): Entity{
   
     
-    const newData = [data,...args]
+    
+    const newConfig = [config,...args]
         
-    if(isSensorType(data.subtype)){
-        return SensorFactory.create(data.subtype, ...newData)
+    if(isSensorType(config.subtype)){
+        return SensorFactory.create(config.subtype, ...newConfig)
     }
-    if(isEquipmentType(data.subtype)){
-        return EquipmentFactory.create(data.subtype, ...newData)
+    if(isEquipmentType(config.subtype)){
+        return EquipmentFactory.create(config.subtype, ...newConfig)
     }
-    if(isStateType(data.subtype)){
-        return StateFactory.create(data.subtype, ...newData)
+    if(isStateType(config.subtype)){
+        return StateFactory.create(config.subtype, ...newConfig)
     }
     
     
-    console.log(`${data.subtype} Factory not Created`)
-    throw new Error(`${data.subtype} Factory not Created`)
+    
+    console.log(`${config.subtype} Factory not Created`)
+    throw new Error(`${config.subtype} Factory not Created`)
     
 
 
@@ -54,16 +56,16 @@ function entityCreatorHelper(data:entityConfig, ...args: any[]): Entity{
  * See below for Explanation
  * 
  */
-function isSensorType(entityType: EntitiesStrings): entityType is SensorTypes{
-    return Object.values(SensorTypes).includes(entityType as SensorTypes)    
+function isSensorType(entitySubType: EntitiesStrings): entitySubType is SensorTypes{
+    return Object.values(SensorTypes).includes(entitySubType as SensorTypes)    
 }
 
-function isEquipmentType(entityType: EntitiesStrings): entityType is EquipmentTypes{
-    return Object.values(EquipmentTypes).includes(entityType as EquipmentTypes)
+function isEquipmentType(entitySubType: EntitiesStrings): entitySubType is EquipmentTypes{
+    return Object.values(EquipmentTypes).includes(entitySubType as EquipmentTypes)
 }
 
-function isStateType(entityType: EntitiesStrings): entityType is StateTypes{
-    return Object.values(StateTypes).includes(entityType as StateTypes)
+function isStateType(entitySubType: EntitiesStrings): entitySubType is StateTypes{
+    return Object.values(StateTypes).includes(entitySubType as StateTypes)
 }
 
 

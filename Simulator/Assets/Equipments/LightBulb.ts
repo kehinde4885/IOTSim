@@ -11,7 +11,7 @@ export class LightBulb extends Equipment{
 
 
     constructor(config: entityConfig, eventBus:MyEmitter) {
-        super(config.relationships,eventBus)
+        super(config,eventBus)
         this.serialNumber ="38920820"
         this.name = config.name
         this.id = config.id
