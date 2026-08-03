@@ -7,15 +7,15 @@ export class BinarySensor extends Sensor{
     name: string;
     lastValue: boolean;
     LastValueTime: Date;
-    id: string;
+   
 
 
     constructor(config: entityConfig, eventBus:MyEmitter) {
-        super(config.relationships,eventBus)
+        super(config,eventBus)
         this.LastValueTime = new Date()
         this.lastValue = false;
         this.name = config.name || "Binary Sensor";
-        this.id = config.id;
+        
         
     }
 

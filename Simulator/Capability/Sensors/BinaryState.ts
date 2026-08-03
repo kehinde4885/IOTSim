@@ -11,7 +11,7 @@ export class BinaryState extends State{
   
 
    constructor(config: entityConfig, eventBus:MyEmitter) {
-        super(config.relationships,eventBus)
+        super(config,eventBus)
         this.LastValueTime = new Date()
         this.lastValue = false;
         this.name = config.name || "Binary Sensor";

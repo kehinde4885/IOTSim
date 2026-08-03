@@ -1,4 +1,4 @@
-﻿import {EntitiesStrings, entityConfigRelation} from "../types.ts";
+﻿import {EntitiesStrings, entityConfig, entityConfigRelation} from "../types.ts";
 import {MyEmitter} from "../EventBus.ts";
 
 /**
@@ -10,11 +10,12 @@ import {MyEmitter} from "../EventBus.ts";
 
 export abstract class Entity{
     abstract name: string;
-    abstract id:string;
+    id:string;
+    subtype:string
     EventBus: MyEmitter
     Relationships: Map<any,any> = new Map
 
-    constructor(relationships: entityConfigRelation[], eventBus: MyEmitter) {
+    constructor({id,subtype,relationships}:entityConfig, eventBus: MyEmitter) {
         
         this.EventBus = eventBus
         
@@ -29,6 +30,10 @@ export abstract class Entity{
             this.Relationships.set(Object.keys(relationship)[0], relSet)
 
         })
+        
+        
+        this.id = id
+        this.subtype = subtype
     }
     
     getInfo():{}{
@@ -36,7 +41,8 @@ export abstract class Entity{
         const objectInfo = {
             id: this.id,
             name: this.name,
-            rel: [] as {}[]
+            relationships: [] as {}[],
+            subtype: this.subtype
         }
         
         
@@ -46,7 +52,7 @@ export abstract class Entity{
 
             const rel = { [key]:  Array.from(value)}
             
-           objectInfo.rel.push(rel)
+           objectInfo.relationships.push(rel)
         }
 
         return objectInfo
@@ -92,7 +98,7 @@ export class EntityFactory<T extends Entity>{
     
     //create instance of entity
     //returns a type any(T)
-    create(key:string, ...args:any[]):T{
+    create(key:string, ...args:any[]):Entity{
         //console.log(args)
         //fetch constructor
         const ctor = this.registry.get(key);
