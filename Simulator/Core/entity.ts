@@ -1,4 +1,4 @@
-﻿import {EntitiesStrings, entityConfig,} from "../types.ts";
+import {EntitiesStrings, entityConfig,} from "../types.ts";
 import {MyEmitter} from "../EventBus.ts";
 
 /**
