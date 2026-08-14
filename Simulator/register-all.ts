@@ -1,19 +1,33 @@
-﻿import {SensorFactory, StateFactory} from "./Capability/core.ts";
-import {EquipmentFactory} from "./Assets/core.ts";
+﻿import { AssetFactory } from './Assets/assetCore.ts'
+import { SpaceFactory } from './Space/spaceCore.ts'
+import { CapabilityFactory } from './Capability/capabilityCore.ts'
 
-import {EquipmentTypes, SensorTypes, StateTypes} from "./types.ts";
+import {
+  EquipmentTypes,
+  FurnitureTypes,
+  SensorTypes,
+  SpaceTypes,
+  StateTypes,
+} from './types.ts'
 
-import {TempSensor} from "./Capability/Sensors/TempSensor.ts";
-import {LightBulb} from "./Assets/Equipments/LightBulb.ts";
-import {BinaryState} from "./Capability/Sensors/BinaryState.ts";
+import { Chair } from './Assets/Furniture/Chair.ts'
 
+import { TempSensor } from './Capability/Sensors/TempSensor.ts'
+import { LightBulb } from './Assets/Equipments/LightBulb.ts'
+import { BinaryState } from './Capability/Sensors/BinaryState.ts'
+import { Room } from './Space/Room/Room.ts'
 
 //Sensors
-SensorFactory.register(SensorTypes.tempsensor, TempSensor);
+CapabilityFactory.register(SensorTypes.tempsensor, TempSensor)
 
 //States
-StateFactory.register(StateTypes.binaryState, BinaryState )
+CapabilityFactory.register(StateTypes.binaryState, BinaryState)
 
+//Furniture
+AssetFactory.register(FurnitureTypes.chair, Chair)
 
 //Equipments
-EquipmentFactory.register(EquipmentTypes.lightbulb, LightBulb)
+AssetFactory.register(EquipmentTypes.lightbulb, LightBulb)
+
+//Rooms
+SpaceFactory.register(SpaceTypes.room, Room)
