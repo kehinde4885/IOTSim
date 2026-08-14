@@ -2,7 +2,7 @@
 
 import {
     ActuatorTypes,
-    EntityTypes,
+    EntityCategory,
     EquipmentTypes,
     FurnitureTypes,
     SensorTypes, SpaceTypes,
@@ -33,7 +33,7 @@ router.get('/api/entity-options', (req, res)=>{
     res.json({
         types: [
             {
-                value: EntityTypes.capability,
+                value: EntityCategory.capability,
                 label: 'Capability',
                 subtypes: [
                     ...enumToOptions(SensorTypes),
@@ -42,7 +42,7 @@ router.get('/api/entity-options', (req, res)=>{
                 ]
             },
             {
-                value: EntityTypes.asset,
+                value: EntityCategory.asset,
                 label: "Asset",
                 subtypes: [
                     ...enumToOptions(FurnitureTypes),
@@ -50,7 +50,7 @@ router.get('/api/entity-options', (req, res)=>{
                 ]
             },
             {
-                value: EntityTypes.space,
+                value: EntityCategory.space,
                 label: "Space",
                 subtypes: enumToOptions(SpaceTypes),
             }

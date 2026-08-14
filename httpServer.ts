@@ -31,6 +31,18 @@ app.get("/getEntities", (req,res)=>{
     res.json(entityInfoArray)
 })
 
+app.get("/entities/:id/exists", (req,res)=>{
+
+    const {id} = req.params
+    const engine = simEngine.getInstance()
+    
+    const exists = engine.doIdExist(id)
+    
+    res.json({exists})
+    
+    
+    
+})
 
 app.post("/createEntity", (req,res)=>{
     

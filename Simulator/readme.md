@@ -30,3 +30,11 @@ Space: "Conference Room 3"
 
 For a plain, non-connected light bulb: **Asset**, full stop.
 For a smart/connected light bulb: **Asset** (the physical fixture) **+ Logical Device** (its network/telemetry identity), often as two related twins rather than one.
+
+
+To Add a New Entity.
+- Create the Entity Category Parent Class (Capability, Logical Device ...)
+- Create the Entity Type Parent extending the Category Parent Class (Equipment, Sensor, Actuator)
+- Create the Entity Class extending the Entity Type Parent Class (TempSensor, Chair)
+- Create the Entity Category Class FACTORY
+- Register the entity Class in the Category class factory

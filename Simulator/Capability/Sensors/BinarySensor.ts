@@ -1,5 +1,5 @@
 ﻿
-import {Sensor} from "../core.ts";
+import {Sensor} from "../capabilityCore.ts";
 import {entityConfig} from "../../types.ts";
 import {MyEmitter} from "../../EventBus.ts";
 

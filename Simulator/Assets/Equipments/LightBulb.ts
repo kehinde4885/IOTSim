@@ -1,4 +1,4 @@
-﻿import {Equipment} from "../core.ts";
+﻿import {Equipment} from "../assetCore.ts";
 import {entityConfig} from "../../types.ts";
 import {MyEmitter} from "../../EventBus.ts";
 

@@ -1,5 +1,5 @@
 ﻿
-import {State} from "../core.ts";
+import {State} from "../capabilityCore.ts";
 import {entityConfig} from "../../types.ts";
 import {MyEmitter} from "../../EventBus.ts";
 
