@@ -16,18 +16,18 @@ import { TempSensor } from './Capability/Sensors/TempSensor.ts'
 import { LightBulb } from './Assets/Equipments/LightBulb.ts'
 import { BinaryState } from './Capability/Sensors/BinaryState.ts'
 import { Room } from './Space/Room/Room.ts'
+import { HumiditySensor } from './Capability/Sensors/HumiditySensor.ts'
+import { IlluminanceSensor } from './Capability/Sensors/illuminace.ts'
 
-//Sensors
+//Capability
 CapabilityFactory.register(SensorTypes.tempsensor, TempSensor)
-
-//States
 CapabilityFactory.register(StateTypes.binaryState, BinaryState)
+CapabilityFactory.register(SensorTypes.illuminancesensor, IlluminanceSensor)
+CapabilityFactory.register(SensorTypes.humiditysensor, HumiditySensor)
 
-//Furniture
+//Assets
 AssetFactory.register(FurnitureTypes.chair, Chair)
-
-//Equipments
 AssetFactory.register(EquipmentTypes.lightbulb, LightBulb)
 
-//Rooms
+//Spaces
 SpaceFactory.register(SpaceTypes.room, Room)

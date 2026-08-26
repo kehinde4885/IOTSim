@@ -13,20 +13,9 @@ export abstract class Sensor extends Capability {}
 
 export abstract class State extends Capability {}
 
-export abstract class Actuator extends Capability {
-  abstract act(command: string): void
+export abstract class Actuator extends Capability {}
 
-  describe() {
-    return 'actuator capability'
-  }
-}
-
-export abstract class Parameter extends Capability {
-  abstract getValue(): unknown
-  describe() {
-    return 'parameter capability'
-  }
-}
+export abstract class Parameter extends Capability {}
 
 /**
  * creates factories based on the entityFactory class

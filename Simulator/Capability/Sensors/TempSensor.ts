@@ -1,21 +1,15 @@
-﻿import {Sensor} from "../capabilityCore.ts";
-import {entityConfig} from "../../types.ts";
-import {MyEmitter} from "../../EventBus.ts";
+﻿import { Sensor } from '../capabilityCore.ts'
+import { entityConfig } from '../../types.ts'
+import { MyEmitter } from '../../EventBus.ts'
 
-export class TempSensor extends Sensor{
-    name: string;
-    lastValue: number;
-    LastValueTime: Date;
-    
+export class TempSensor extends Sensor {
+  name: string
+  lastValue: number = 28
+  LastValueTime: Date = new Date()
 
-    constructor(config: entityConfig, eventBus:MyEmitter) {
-        
-        super(config,eventBus)
-        this.LastValueTime = new Date()
-        this.lastValue = 28;
-        this.name = config.name || "Temperature Sensor";
-                    
+  constructor(config: entityConfig, eventBus: MyEmitter) {
+    super(config, eventBus)
 
-    }
-    
+    this.name = config.name || 'Temperature Sensor'
+  }
 }

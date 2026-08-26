@@ -16,7 +16,7 @@ export abstract class Space extends Entity {
   abstract personOccupancy: number
 
   //Components
-  abstract area?: spaceArea | undefined
+  abstract area: spaceArea
   abstract capacity: spaceCapacity | undefined
   abstract temperature: spaceTemperature | undefined
   abstract humidity: spaceHumidity | undefined

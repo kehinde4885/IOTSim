@@ -2,6 +2,8 @@
 // the subtype of entity is used to narrow down the
 // specific child of entity.
 
+
+Entity-> Category(space,Asset,Capability)->Type(Sensor,Actuator) ->SubType(FireSensor)
 /**
  *******************************************************************
  */
@@ -9,6 +11,8 @@
 export enum SensorTypes {
   tempsensor = 'TemperatureSensor',
   fireSensor = 'FireSensor',
+  humiditysensor = 'HumiditySensor',
+  illuminancesensor = 'IlluminanceSensor',
 }
 
 export enum ActuatorTypes {

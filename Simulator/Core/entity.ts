@@ -1,4 +1,4 @@
-import { EntitiesStrings, entityConfig } from '../types.ts'
+import { entitiesSubTypes, entityConfig } from '../types.ts'
 import { MyEmitter } from '../EventBus.ts'
 
 /**
@@ -81,7 +81,7 @@ export class EntityFactory<T extends Entity> {
 
   //register the entity
   //its key is the string name for the leaf type
-  register(key: EntitiesStrings, ctor: Constructor<T>): void {
+  register(key: entitiesSubTypes, ctor: Constructor<T>): void {
     if (this.registry.has(key)) {
       throw new Error(`Duplicate registration for key: "${key}"`)
     }
